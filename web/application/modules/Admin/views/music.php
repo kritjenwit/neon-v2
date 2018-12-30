@@ -36,6 +36,7 @@ $music_type = array(
     <div class="col-md-6 offset-md-3">
         <?php echo Modules::run($module.'/nav'); ?>
         <div class="card card-header m-top-20">
+            <?php $this->load->view('session'); ?>
             <h4>Add Music</h4>
             <hr>
             <?php

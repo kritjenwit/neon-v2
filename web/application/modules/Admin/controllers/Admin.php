@@ -53,10 +53,17 @@ class Admin extends MY_Controller
             $data['music_type'] = $post['music_type'];
             $data['cover_url'] = $post['album_name'] === '' ? url_title(strtolower($post['artist'])).'/'.$cover_name : $this->cover_url.url_title(strtolower($post['album_name'])).'/'.url_title(strtolower($post['artist'])).'/'.$cover_name;
             $data['music_url'] = $post['album_name'] === '' ? url_title(strtolower($post['artist'])).'/'.$music_name : $this->music_url.url_title(strtolower($post['album_name'])).'/'.url_title(strtolower($post['artist'])).'/'.$music_name;
-            alert($this->api->post(API . 'musics', $data));
-
+//            alert($this->api->post(API . 'musics', $data));
+            if(isset($this->api->post(API.'musics')['status']) && isset($this->api->post(API.'musics')['status']) === 404)
+            {
+                $this->session->set_flashdata('upload_fail',$this->api->post(API.'musics')['msg']);
+            }
+            else
+            {
+                $this->session->set_flashdata('upload_success','Upload successfully');
+            }
+            redirect('admin/music');
         }
-
     }
 
     private function upload_cover($post)

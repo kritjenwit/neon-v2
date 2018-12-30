@@ -152,8 +152,8 @@ if(!function_exists('success_flashdata'))
      * Generate Alert box if there is flashdata
      *
      *
-     * @param string $type
-     * @param string $message
+     * @param string $type          success or error
+     * @param string $message       Any message
      * @return string $template
      */
     function flashdata($type,$message)
