@@ -51,17 +51,18 @@ class Admin extends MY_Controller
             $data['album_name'] = $post['album_name'];
             $data['artist'] = $post['artist'];
             $data['music_type'] = $post['music_type'];
-            $data['cover_url'] = $post['album_name'] === '' ? url_title(strtolower($post['artist'])).'/'.$cover_name : $this->cover_url.url_title(strtolower($post['album_name'])).'/'.url_title(strtolower($post['artist'])).'/'.$cover_name;
-            $data['music_url'] = $post['album_name'] === '' ? url_title(strtolower($post['artist'])).'/'.$music_name : $this->music_url.url_title(strtolower($post['album_name'])).'/'.url_title(strtolower($post['artist'])).'/'.$music_name;
-//            alert($this->api->post(API . 'musics', $data));
-            if(isset($this->api->post(API.'musics')['status']) && isset($this->api->post(API.'musics')['status']) === 404)
+            $data['cover_url'] = $post['album_name'] === '' ? url_title(strtolower($post['artist'])).'/'.$cover_name : url_title(strtolower($post['album_name'])).'/'.url_title(strtolower($post['artist'])).'/'.$cover_name;
+            $data['music_url'] = $post['album_name'] === '' ? url_title(strtolower($post['artist'])).'/'.$music_name : url_title(strtolower($post['album_name'])).'/'.url_title(strtolower($post['artist'])).'/'.$music_name;
+            $res = $this->api->post(API . 'musics', $data);
+            if(isset($res['status']) && isset($res['status']) === 404)
             {
-                $this->session->set_flashdata('upload_fail',$this->api->post(API.'musics')['msg']);
+                $this->session->set_flashdata('upload_fail',$res['msg']);
             }
             else
             {
                 $this->session->set_flashdata('upload_success','Upload successfully');
             }
+//            alert($res);
             redirect('admin/music');
         }
     }

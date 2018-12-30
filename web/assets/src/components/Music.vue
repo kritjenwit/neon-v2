@@ -11,7 +11,8 @@
 					<div class="overlay">
 						<div class="text music-queue">
 							<!-- <a class="music-list" :href="music.music_url" onclick="$.play(this)" >{{ music.music_name }}</a> -->
-							<a class="music-list" :href="music.music_url" @click.prevent v-on:click="play_music($event)" >{{ music.music_name + '  ' + music.artist }}</a>
+							<a class="music-list" :href="music.music_url" @click.prevent v-on:click="play_music($event)" >{{ music.music_name}}</a>
+                            <a href="">{{ music.artist }}</a>
 						</div>
 					</div>
 				</div>
@@ -26,7 +27,8 @@ export default {
   data() {
     return {
       msg: "Hello from component",
-      musics: null
+      musics: null,
+      current:0,
     };
   },
   mounted() {
@@ -51,6 +53,7 @@ export default {
       });
       $("#audio-player")[0].src = $(list)[0].href;
       $("#audio-player")[0].play();
+	  $('#music-title').text(list.text);
     }
   }
 };

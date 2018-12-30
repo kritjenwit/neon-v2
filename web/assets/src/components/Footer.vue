@@ -1,7 +1,7 @@
 <template>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
 		<div class="container">
-			<a class="navbar-brand" href="#">Logo</a>
+			<a class="navbar-brand" href="#" id="music-title">Logo</a>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
 					<a class="nav-link" v-on:click="play_music()"><i class="fas fa-play icon"></i></a>
